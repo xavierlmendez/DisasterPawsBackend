@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Incident {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  report      String
+  location    String
+  priority    String?
+  confidence  Float?
+  status      String   @default("needs_human_review")
+}
